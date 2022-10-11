@@ -74,8 +74,10 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit(Post $post)
-    {
-        //
+    {   $this->authorize('update',$post);
+        return view('posts.edit',[
+            'post'=>$post
+        ]);
     }
 
     /**
@@ -87,7 +89,23 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        //
+        $this->authorize('update', $post);
+
+ 
+
+        $validated = $request->validate([
+
+            'message' => 'required|string|max:255',
+
+        ]);
+
+ 
+
+        $post->update($validated);
+
+ 
+
+        return redirect(route('posts.index'));
     }
 
     /**
