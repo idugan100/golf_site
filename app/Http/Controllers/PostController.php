@@ -14,8 +14,10 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+        return view('posts.index');
     }
+
+  
 
     /**
      * Show the form for creating a new resource.
@@ -34,8 +36,22 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
+    
     {
-        //
+        $validated = $request->validate([
+
+            'message' => 'required|string|max:255',
+
+        ]);
+
+ 
+
+        $request->user()->posts()->create($validated);
+
+ 
+
+        return redirect(route('posts.index'));
+        
     }
 
     /**
@@ -46,7 +62,7 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        //
+        return('hello show');
     }
 
     /**
