@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 
@@ -21,6 +22,11 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::resource('comments',CommentController::class)
+    ->only(['create'])
+    ->middleware(['auth','verified']);
+
 
 Route::resource('posts',PostController::class)
     ->only(['index','store','edit','update','destroy'])
