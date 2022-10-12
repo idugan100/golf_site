@@ -48,9 +48,9 @@
                                         <x-dropdown-link :href="route('posts.destroy', $post)" onclick="event.preventDefault(); this.closest('form').submit();">
                                             {{ __('Delete') }}
                                         </x-dropdown-link>
-                                        @endif
-                                        <x-dropdown-link>Comment</x-dropdown-link>
                                     </form>
+                                    @endif
+                                        <x-dropdown-link :href="route('comments.create')">Comment</x-dropdown-link>
                                 </x-slot>
                                
                             </x-dropdown>
