@@ -26,8 +26,9 @@
                                 <small class="text-sm text-gray-600"> &middot; {{ __('edited') }}</small>
                                 @endunless
                             </div>
-                            @if ($post->user->is(auth()->user()))
+                            
                             <x-dropdown>
+                               
                                 <x-slot name="trigger">
                                     <button>
                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
@@ -35,7 +36,9 @@
                                         </svg>
                                     </button>
                                 </x-slot>
+                                
                                 <x-slot name="content">
+                                    @if ($post->user->is(auth()->user()))
                                     <x-dropdown-link :href="route('posts.edit', $post)">
                                         {{ __('Edit') }}
                                     </x-dropdown-link>
@@ -45,10 +48,13 @@
                                         <x-dropdown-link :href="route('posts.destroy', $post)" onclick="event.preventDefault(); this.closest('form').submit();">
                                             {{ __('Delete') }}
                                         </x-dropdown-link>
+                                        @endif
+                                        <x-dropdown-link>Comment</x-dropdown-link>
                                     </form>
                                 </x-slot>
+                               
                             </x-dropdown>
-                        @endif
+                       
                         </div>
                         <p class="mt-4 text-lg text-gray-900">{{ $post->message }}</p>
                     </div>
