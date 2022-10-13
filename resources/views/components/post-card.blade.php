@@ -45,6 +45,14 @@
         </div>
         <p class="mt-4 text-lg text-gray-900">{{ $post->message }}</p>
     </div>
-    {{-- lets create the comment accordian button element here
-        with comments by latest with the comments.store form at the top --}}
+    
+</div>
+<div class="block w-11/12 my-4 mx-auto" x-data="{selected:null}">
+    <li class="flex align-center flex-col">
+        <h4 @click="selected !== 0 ? selected = 0 : selected = null"
+            class="cursor-pointer px-5 py-3 bg-indigo-300 text-white text-center inline-block hover:opacity-75 hover:shadow  rounded-t">Comments</h4>
+        <p x-show="selected == 0" class="border py-4 px-2">
+            This is made with Alpine JS and Tailwind CSS
+        </p>
+    </li>
 </div>
