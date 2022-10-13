@@ -51,11 +51,29 @@
     <li class="flex align-center flex-col">
         <h4 @click="selected !== 0 ? selected = 0 : selected = null"
             class="cursor-pointer px-5 py-3 bg-indigo-300 text-white text-center inline-block hover:opacity-75 hover:shadow  rounded-t">Comments</h4>
-        <p x-show="selected == 0" class="border py-4 px-2">
+        
             @foreach ($post->comments as $comment)
+            <p x-show="selected == 0" class="border py-4 px-2">
                 {{$comment->message}}
+            </p>
             @endforeach
-        </p>
+            
+<div x-show="selected ==0"class="max-w-2xl mx-auto p-4 sm:p-6 lg:p-8">
+    <form method="POST" action="{{ route('comments.store') }}">
+        @csrf
+        <input  class="invisible" type="text" name='post_id' value={{ $post->id }}>
+        <textarea
+            name="message"
+            class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
+        ></textarea>
+        <x-input-error :messages="$errors->get('message')" class="mt-2" />
+        <div class="mt-4 space-x-2">
+            <x-primary-button>{{ __('Comment') }}</x-primary-button>
+            <a href="{{ route('posts.index') }}">{{ __('Cancel') }}</a>
+        </div>
+    </form>
+</div>
+        
     </li>
 </div>
 <div>
