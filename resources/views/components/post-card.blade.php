@@ -37,7 +37,6 @@
                         </x-dropdown-link>
                     </form>
                     @endif
-                        <x-dropdown-link :href="route('comments.create')">Comment</x-dropdown-link>
                 </x-slot>
                
             </x-dropdown>
@@ -53,13 +52,22 @@
             class="cursor-pointer px-5 py-3 bg-indigo-300 text-white text-center inline-block hover:opacity-75 hover:shadow  rounded-t">Comments</h4>
         
             @foreach ($post->comments as $comment)
-            <p x-show="selected == 0" class="border py-4 px-2">
+            <p x-show="selected == 0" class="border py-4 px-2 flex">
                 {{$comment->message}}
+                @if ($comment->user->is(auth()->user()))
+            <button class="bg-black rounded text-white ml-auto">delete</button>
+            @endif
             </p>
+            
+
+            <form action="POST">
+
+            </form>
             @endforeach
             
 <div x-show="selected ==0"class="max-w-2xl mx-auto p-4 sm:p-6 lg:p-8">
-    <form method="POST" action="{{ route('comments.store') }}">
+    
+    <form  class="my-0"method="POST" action="{{ route('comments.store') }}">
         @csrf
         <input  class="invisible" type="text" name='post_id' value={{ $post->id }}>
         <textarea

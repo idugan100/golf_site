@@ -24,7 +24,7 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::resource('comments',CommentController::class)
-    ->only(['create','store'])
+    ->only(['destroy','store'])
     ->middleware(['auth','verified']);
 
 
