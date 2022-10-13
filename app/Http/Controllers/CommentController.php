@@ -98,7 +98,9 @@ class CommentController extends Controller
      */
     public function destroy(Comment $comment)
     {
+
+        
         $comment->delete();
-        return(view('posts.index'));
+        return(redirect(route('posts.index')));
     }
 }

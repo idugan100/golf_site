@@ -55,7 +55,15 @@
             <p x-show="selected == 0" class="border py-4 px-2 flex">
                 {{$comment->message}}
                 @if ($comment->user->is(auth()->user()))
-            <button class="bg-black rounded text-white ml-auto">delete</button>
+            <form  
+                x-show="selected == 0"
+                class=" inline bg-black rounded text-white mx-auto" 
+                method="POST" 
+                action="{{ route('comments.destroy',$comment) }}">
+                @csrf
+                @method('DELETE')
+                <button type="submit">Delete</button>
+            </form>
             @endif
             </p>
             
