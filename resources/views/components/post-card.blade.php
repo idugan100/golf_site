@@ -52,7 +52,12 @@
         <h4 @click="selected !== 0 ? selected = 0 : selected = null"
             class="cursor-pointer px-5 py-3 bg-indigo-300 text-white text-center inline-block hover:opacity-75 hover:shadow  rounded-t">Comments</h4>
         <p x-show="selected == 0" class="border py-4 px-2">
-            This is made with Alpine JS and Tailwind CSS
+            @foreach ($post->comments as $comment)
+                {{$comment->message}}
+            @endforeach
         </p>
     </li>
+</div>
+<div>
+    
 </div>
