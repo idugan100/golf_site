@@ -54,6 +54,7 @@
             @foreach ($post->comments as $comment)
             <div class="border flex align-center space-between" x-show="selected==0">
             <p x-show="selected == 0" class="py-4 px-2">
+                {{ $comment->user->name . ": " }}
                 {{$comment->message}}
                 @if ($comment->user->is(auth()->user()))
             <form  
