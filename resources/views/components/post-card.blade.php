@@ -51,47 +51,11 @@
         <h4 @click="selected !== 0 ? selected = 0 : selected = null"
             class="cursor-pointer px-5 py-3 bg-indigo-300 text-white text-center inline-block hover:opacity-75 hover:shadow  rounded-t">Comments</h4>
         
-            @foreach ($post->comments as $comment)
-            <div class="border flex align-center space-between" x-show="selected==0">
-            <p x-show="selected == 0" class="py-4 px-2">
-                {{ $comment->user->name . ": " }}
-                {{$comment->message}}
-                @if ($comment->user->is(auth()->user()))
-            <form  
-                x-show="selected == 0"
-                class=" ml-auto mr-6 flex items-center justify-center" 
-                method="POST" 
-                action="{{ route('comments.destroy',$comment) }}">
-                @csrf
-                @method('DELETE')
-                <button class="bg-red-500 hover:bg-red-700 rounded p-1"type="submit">Delete</button>
-            </form>
-            
-            @endif
-            </p>
-            </div>
-
-            <form action="POST">
-
-            </form>
-            @endforeach
-            
-<div x-show="selected ==0"class="max-w-2xl mx-auto p-4 sm:p-6 lg:p-8">
-    
-    <form  class="my-0"method="POST" action="{{ route('comments.store') }}">
-        @csrf
-        <input  class="invisible" type="text" name='post_id' value={{ $post->id }}>
-        <textarea
-            name="message"
-            class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
-        ></textarea>
-        <x-input-error :messages="$errors->get('message')" class="mt-2" />
-        <div class="mt-4 space-x-2">
-            <x-primary-button>{{ __('Comment') }}</x-primary-button>
-            <a href="{{ route('posts.index') }}">{{ __('Cancel') }}</a>
-        </div>
-    </form>
-</div>
+                @foreach ($post->comments as $comment)
+                <x-comment-card :comment="$comment"></x-comment-card>
+                @endforeach
+                
+        <x-create-comment :post="$post"></x-create-comment>
         
     </li>
 </div>
