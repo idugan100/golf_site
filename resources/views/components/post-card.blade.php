@@ -52,21 +52,23 @@
             class="cursor-pointer px-5 py-3 bg-indigo-300 text-white text-center inline-block hover:opacity-75 hover:shadow  rounded-t">Comments</h4>
         
             @foreach ($post->comments as $comment)
-            <p x-show="selected == 0" class="border py-4 px-2 flex">
+            <div class="border flex align-center space-between" x-show="selected==0">
+            <p x-show="selected == 0" class="py-4 px-2">
                 {{$comment->message}}
                 @if ($comment->user->is(auth()->user()))
             <form  
                 x-show="selected == 0"
-                class=" inline bg-black rounded text-white mx-auto" 
+                class=" ml-auto mr-6 flex items-center justify-center" 
                 method="POST" 
                 action="{{ route('comments.destroy',$comment) }}">
                 @csrf
                 @method('DELETE')
-                <button type="submit">Delete</button>
+                <button class="bg-red-500 hover:bg-red-700 rounded p-1"type="submit">Delete</button>
             </form>
+            
             @endif
             </p>
-            
+            </div>
 
             <form action="POST">
 
