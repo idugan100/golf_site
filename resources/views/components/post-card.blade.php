@@ -42,10 +42,22 @@
             </x-dropdown>
        
         </div>
+        
+        @if ($post->picture)
+            <div>
+                <img
+                class=" w-48 mr-6 md:block"
+                src= "{{asset('storage/'."$post->picture")  }}" />
+            </div>
+        @endif
         <p class="mt-4 text-lg text-gray-900">{{ $post->message }}</p>
     </div>
     
+
+    
+    
 </div>
+
 <div class="block w-11/12 my-4 mx-auto" x-data="{selected:null}">
     <li class="flex align-center flex-col">
         <h4 @click="selected !== 0 ? selected = 0 : selected = null"
