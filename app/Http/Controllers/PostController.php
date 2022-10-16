@@ -51,7 +51,7 @@ class PostController extends Controller
        
       
         
-        if($request->file('picture')){
+        if($request->file('picture')&&$request->removePhoto){
             
             $validated['picture']=$request->file('picture')->store('photos','public');
             
@@ -96,21 +96,31 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Post $post)
-    {
+    {   
+
         $this->authorize('update', $post);
+        
 
  
 
         $validated = $request->validate([
 
             'message' => 'required|string|max:255',
+            'picture'=>'nullable'
 
         ]);
-
- 
-
-        $post->update($validated);
-
+        if($request->file('picture')){
+            
+            $validated['picture']=$request->file('picture')->store('photos','public');
+            
+        }
+        if($request->removePhoto){
+            $post->update(["picture"=>NULL,
+            "message"=>$request->message]);
+        }
+        else{
+            $post->update($validated);
+        }
  
 
         return redirect(route('posts.index'));

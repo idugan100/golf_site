@@ -43,14 +43,17 @@
        
         </div>
         {{-- Styling of photo and caption needs work --}}
-        @if ($post->picture)
-            <div>
-                <img
-                class=" w-48 mr-6 md:block"
-                src= "{{asset('storage/'."$post->picture")  }}" />
-            </div>
-        @endif
+        <div class="mx-2 my-5 flex align-center items-center">
+            @if ($post->picture)
+                <div>
+                    <img
+                    class=" w-48 mr-6 md:block"
+                    src= "{{asset('storage/'."$post->picture")  }}" />
+                </div>
+            @endif
+    
         <p class="mt-4 text-lg text-gray-900">{{ $post->message }}</p>
+    </div>
     </div>
     
 
