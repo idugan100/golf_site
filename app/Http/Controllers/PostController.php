@@ -43,7 +43,7 @@ class PostController extends Controller
         $validated=$request->validate([
 
             'message' => 'required|string|max:255',
-            'picture'=>'nullable|required'
+            'picture'=>'nullable'
         ]);
         
 
@@ -51,7 +51,7 @@ class PostController extends Controller
        
       
         
-        if($validated['picture']){
+        if($request->file('picture')){
             
             $validated['picture']=$request->file('picture')->store('photos','public');
             

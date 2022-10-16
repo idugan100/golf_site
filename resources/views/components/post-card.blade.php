@@ -42,7 +42,7 @@
             </x-dropdown>
        
         </div>
-        
+        {{-- Styling of photo and caption needs work --}}
         @if ($post->picture)
             <div>
                 <img
