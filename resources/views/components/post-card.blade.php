@@ -51,9 +51,9 @@
         <h4 @click="selected !== 0 ? selected = 0 : selected = null"
             class="cursor-pointer px-5 py-3 bg-indigo-300 text-white text-center inline-block hover:opacity-75 hover:shadow  rounded-t">Comments</h4>
         
-                @foreach ($post->comments as $comment)
-                <x-comment-card :comment="$comment"></x-comment-card>
-                @endforeach
+    @foreach ($post->comments as $comment)
+        <x-comment-card :comment="$comment"></x-comment-card>
+    @endforeach
                 
         <x-create-comment :post="$post"></x-create-comment>
         

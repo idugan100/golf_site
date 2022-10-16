@@ -12,7 +12,7 @@ class Post extends Model
     use HasFactory;
     protected $fillable = [
 
-        'message',
+        'message','picture'
 
     ];
 
