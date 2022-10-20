@@ -10,6 +10,6 @@ class UserController extends Controller
         return view('profiles.user_profile');
     }
     public function edit(){
-    
+        return view('profiles.user_update');
     }
 }
