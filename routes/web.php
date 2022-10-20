@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,9 +28,7 @@ Route::resource('comments',CommentController::class)
     ->only(['destroy','store'])
     ->middleware(['auth','verified']);
 
-Route::get('profile',function (){
-    return view('profiles.user_profile');
-})->name('profile');
+Route::get('profile',[UserController::class,'index'])->name('profile');
 Route::resource('posts',PostController::class)
     ->only(['index','store','edit','update','destroy'])
     ->middleware(['auth','verified']);
