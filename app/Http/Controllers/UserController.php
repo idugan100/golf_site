@@ -12,4 +12,9 @@ class UserController extends Controller
     public function edit(){
         return view('profiles.user_update');
     }
+
+    public function update(Request $request){
+        dd($request->file());
+        
+    }
 }

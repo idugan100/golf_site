@@ -31,9 +31,12 @@ Route::resource('comments',CommentController::class)
 Route::get('profile',[UserController::class,'index'])
     ->name('profile')
     ->middleware(['auth','verified']);
+Route::patch('/profile/update',[UserController::class,'update'])
+    ->middleware(['auth','verified']);
 Route::get('profile/edit',[UserController::class,'edit'])
     ->name('profile.edit')
     ->middleware(['auth','verified']);
+
 
 Route::resource('posts',PostController::class)
     ->only(['index','store','edit','update','destroy'])
