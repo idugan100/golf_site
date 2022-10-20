@@ -27,7 +27,9 @@ Route::resource('comments',CommentController::class)
     ->only(['destroy','store'])
     ->middleware(['auth','verified']);
 
-
+Route::get('profile',function (){
+    return view('profiles.user_profile');
+})->name('profile');
 Route::resource('posts',PostController::class)
     ->only(['index','store','edit','update','destroy'])
     ->middleware(['auth','verified']);
