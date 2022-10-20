@@ -37,6 +37,9 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'about',
+        'favorite_golf_course',
+        'profile_picture'
     ];
 
     /**

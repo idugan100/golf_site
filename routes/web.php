@@ -21,7 +21,7 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return view('profiles.user_profile');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::resource('comments',CommentController::class)

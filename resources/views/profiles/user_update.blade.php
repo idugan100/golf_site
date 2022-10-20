@@ -10,11 +10,11 @@
            </div>
            <div>
             <label>Favorite Golf Course</label>
-            <input type="text" name="fav_course">
+            <input type="text" name="favorite_golf_course">
            </div>
            <div>
             <label>Profile Photo</label>
-            <input type="file" name="profile_photo">
+            <input type="file" name="profile_picture">
            </div>
             
             <div class="mt-4 space-x-2">
