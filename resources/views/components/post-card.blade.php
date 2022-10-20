@@ -47,7 +47,7 @@
             @if ($post->picture)
                 <div>
                     <img
-                    class=" w-48 mr-6 md:block"
+                    class=" border-4 p-3 w-48 mr-6 md:block"
                     src= "{{asset('storage/'."$post->picture")  }}" />
                 </div>
             @endif
