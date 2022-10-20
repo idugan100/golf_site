@@ -36,6 +36,9 @@ Route::patch('/profile/update',[UserController::class,'update'])
 Route::get('profile/edit',[UserController::class,'edit'])
     ->name('profile.edit')
     ->middleware(['auth','verified']);
+Route::get('profile/{id}',[UserController::class,'show'])
+    ->name('profile.show')
+    ->middleware(['auth', 'verified']);
 
 
 Route::resource('posts',PostController::class)

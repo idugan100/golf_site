@@ -37,6 +37,13 @@
                         </x-dropdown-link>
                     </form>
                     @endif
+                    <form method="GET" action="{{ route('profile.show', $post->user->id) }}">
+                        @csrf
+                        
+                        <x-dropdown-link :href="route('profile.show', $post->user)" onclick="event.preventDefault(); this.closest('form').submit();">
+                            {{ __('View Profile') }}
+                        </x-dropdown-link>
+                    </form>
                 </x-slot>
                
             </x-dropdown>
