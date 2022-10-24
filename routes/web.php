@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\post_user;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -15,7 +16,11 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+//liking posts
+Route::post('/likes',[post_user::class,'store'])
+    ->name('likes.create')
+    ->middleware(['auth','verified'])
+    ;
 Route::get('/', function () {
     return view('welcome');
 });
@@ -39,6 +44,7 @@ Route::get('profile/edit',[UserController::class,'edit'])
 Route::get('profile/{id}',[UserController::class,'show'])
     ->name('profile.show')
     ->middleware(['auth', 'verified']);
+
 
 
 Route::resource('posts',PostController::class)

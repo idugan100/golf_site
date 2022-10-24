@@ -23,4 +23,8 @@ class Post extends Model
     public function comments(){
         return $this->hasMany(Comment::class);
     }
+    public function liked()
+    {
+        return $this->belongsToMany(User::class);
+    }
 }

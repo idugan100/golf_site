@@ -26,6 +26,10 @@ class User extends Authenticatable
         return $this->hasMany(Comment::class);
 
     }
+    public function likes()
+    {
+        return $this->belongsToMany(Post::class);
+    }
     use HasApiTokens, HasFactory, Notifiable;
 
     /**
@@ -60,4 +64,5 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
 }
