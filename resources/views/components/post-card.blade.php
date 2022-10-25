@@ -67,6 +67,7 @@
         <input type="hidden" name="post_id" value={{  $post->id}}>
     <button class="bg-blue-800 text-white p-2 rounded font-bold">like</button>
     </form>
+    <span>{{ count($post->liked) ." likes" }}</span>
     </div>
     
 
