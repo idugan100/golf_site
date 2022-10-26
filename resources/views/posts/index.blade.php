@@ -22,6 +22,7 @@
             <x-post-card :post="$post"></x-post-card>
                 
             @endforeach
+            <div class="mt-6 p-4">{{$posts->links()}}</div>
         </div>
     </div>
 </x-app-layout>

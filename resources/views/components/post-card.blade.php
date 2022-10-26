@@ -60,7 +60,7 @@
             @endif
     
         <p class="mt-4 text-lg text-gray-900">{{ $post->message }}</p>
-    </div>\
+    </div>
     {{-- checks if the post is already liked --}}
     @php
     $likedState=false;
