@@ -60,14 +60,26 @@
             @endif
     
         <p class="mt-4 text-lg text-gray-900">{{ $post->message }}</p>
-    </div>
+    </div>\
+    {{-- checks if the post is already liked --}}
+    @php
+    $likedState=false;
+    foreach($post->liked as $liker){
+     
+        if($liker->id==auth()->user()->id){
+            $likedState=true;
+        }
+    }
+    @endphp
     <form action="/likes" method="POST">
         @csrf
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
         <input type="hidden" name="post_id" value={{  $post->id}}>
-    <button class="bg-blue-800 text-white p-2 rounded font-bold">like</button>
+    <button class="bg-blue-800 text-white p-2 rounded font-bold">{{ $likedState?"Unlike":"Like" }}</button>
     </form>
     <span>{{ count($post->liked) ." likes" }}</span>
+   
+
     </div>
     
 
