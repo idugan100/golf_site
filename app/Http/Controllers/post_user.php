@@ -7,6 +7,7 @@ use App\Models\Post;
 use Illuminate\Http\Request;
 use PhpParser\Node\Stmt\TryCatch;
 use App\Models\post_user as ModelsPost_user;
+use Illuminate\Support\Facades\Auth;
 
 class post_user extends Controller
 {
@@ -18,9 +19,9 @@ class post_user extends Controller
         try{
             $like->save();
         } catch (Exception $ex) {
-            // jump to this part
-            // if an exception occurred
-            dd($ex);
+            $oldlike=ModelsPost_user::where('user_id',Auth::id())->where('post_id',$request->post_id)->get();
+            
+            ModelsPost_user::destroy($oldlike[0]->id);
         }
         
         
