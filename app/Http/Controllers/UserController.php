@@ -7,7 +7,14 @@ use Illuminate\Http\Request;
 class UserController extends Controller
 {
     public function index(){
+        
         return view('profiles.user_profile');
+    }
+    public function explore(){
+        $users=User::all();
+        return view('profiles.explore',[
+            'profiles'=>$users
+        ]);
     }
     public function edit(){
         return view('profiles.user_update');
