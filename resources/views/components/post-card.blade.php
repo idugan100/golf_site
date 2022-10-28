@@ -1,12 +1,14 @@
 @props(['post'])
 <div class="p-6 flex space-x-2">
-    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-600 -scale-x-100" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-    </svg>
+    <span class="text-blue-800 font-bold">{{ count($post->liked)}}</span>
+ <img src="{{ asset("images/thumbs.svg") }}" class="h-6 w-6 text-gray-600 -scale-x-100" alt="">
+    
     <div class="flex-1">
         <div class="flex justify-between items-center">
             <div>
                 <span class="text-gray-800">{{ $post->user->name }}</span>
+                
+
                 <small class="ml-2 text-sm text-gray-600">{{ $post->created_at->format('j M Y, g:i a') }}</small>
                 {{-- if the comment has been edited, then the edited icon will show --}}
                 @unless ($post->created_at->eq($post->updated_at))
@@ -77,7 +79,7 @@
         <input type="hidden" name="post_id" value={{  $post->id}}>
     <button class="bg-blue-800 text-white p-2 rounded font-bold">{{ $likedState?"Unlike":"Like" }}</button>
     </form>
-    <span>{{ count($post->liked) ." likes" }}</span>
+    
    
 
     </div>
@@ -90,7 +92,7 @@
 <div class="block w-11/12 my-4 mx-auto" x-data="{selected:null}">
     <li class="flex align-center flex-col">
         <h4 @click="selected !== 0 ? selected = 0 : selected = null"
-            class="cursor-pointer px-5 py-3 bg-indigo-300 text-white text-center inline-block hover:opacity-75 hover:shadow  rounded-t">Comments</h4>
+            class="cursor-pointer px-5 py-3 bg-blue-800 text-white text-center inline-block hover:opacity-75 hover:shadow  rounded-t">Comments</h4>
         
     @foreach ($post->comments as $comment)
         <x-comment-card :comment="$comment"></x-comment-card>
