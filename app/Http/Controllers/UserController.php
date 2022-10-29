@@ -35,7 +35,9 @@ class UserController extends Controller
         $user=User::find(auth()->user()->id);
         $user->about=$validated['about'];
         $user->favorite_golf_course=$validated['favorite_golf_course'];
+        if($request->file('profile_picture')){
         $user->profile_picture=$validated['profile_picture'];
+        }
         $user->save();
         return redirect(route('profile'));
     
