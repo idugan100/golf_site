@@ -33,7 +33,9 @@ Route::resource('comments',CommentController::class)
     ->only(['destroy','store'])
     ->middleware(['auth','verified']);
 //profile routes
-Route::get('profile/explore',[UserController::class,'explore'])->middleware(['auth','verified']);
+Route::get('profile/explore',[UserController::class,'explore'])
+    ->name('profile.explore')
+    ->middleware(['auth','verified']);
 Route::get('profile',[UserController::class,'index'])
     ->name('profile')
     ->middleware(['auth','verified']);
