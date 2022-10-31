@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Models\Post;
+use App\Models\Friend;
 use App\Models\Comment;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
@@ -29,6 +30,10 @@ class User extends Authenticatable
     public function likes()
     {
         return $this->belongsToMany(Post::class,'post_users');
+    }
+
+    public function friends(){
+        return $this->hasMany(Friend::class,'user_id_one');
     }
     use HasApiTokens, HasFactory, Notifiable;
 
