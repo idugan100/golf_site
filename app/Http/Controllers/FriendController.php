@@ -35,7 +35,12 @@ class FriendController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //pass in other users id from people tab
+        //use auth()->user()->id for first way
+        //check if there is a friend the other way
+        //pending=no inverse
+        //invitation=no inverse from current user's side
+        
     }
 
     /**

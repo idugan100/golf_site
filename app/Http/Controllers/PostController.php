@@ -46,12 +46,7 @@ class PostController extends Controller
             'picture'=>'nullable'
         ]);
         
-
- 
-       
-      
-        
-        if($request->file('picture')&&$request->removePhoto){
+    if($request->file('picture')){
             
             $validated['picture']=$request->file('picture')->store('photos','public');
             
