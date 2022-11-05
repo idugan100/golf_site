@@ -8,10 +8,10 @@
         <p>{{ $user->favorite_golf_course }}</p>
         <h1 class="text-xl font-bold mt-10 underline">Friends</h1>
        
-    @foreach ($friends as $item)
-        
+        @if (!empty($friends))
+        @foreach ($friends as $item)
         <a href="/profile/{{ $item->user_id_one}}">{{ $item->name }}</a>
-        
-    @endforeach
+        @endforeach
+        @endif
     </div>
 </x-app-layout>

@@ -18,11 +18,16 @@
         </form>
         <div class="mt-6 bg-white shadow-sm rounded-lg divide-y">
              {{-- Lets refactor this to make it cleaner --}}
+             @if (!empty($posts))
+                 
+             
             @foreach ($posts as $post)
             <x-post-card :post="$post"></x-post-card>
                 
             @endforeach
+            
             <div class="mt-6 p-4">{{$posts->links()}}</div>
+            @endif
         </div>
     </div>
 </x-app-layout>

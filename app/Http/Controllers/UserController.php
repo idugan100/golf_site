@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 class UserController extends Controller
 {
     public function index(){
-        $friends= $friends=DB::select('SELECT users.name,f2.user_id_one  FROM friends f1, friends f2, users WHERE f1.user_id_one=f2.user_id_two and f1.user_id_two=f2.user_id_one and f1.user_id_one=? AND f2.user_id_one=users.id;',[auth()->user()->id] );
+        $friends=DB::select('SELECT users.name,f2.user_id_one  FROM friends f1, friends f2, users WHERE f1.user_id_one=f2.user_id_two and f1.user_id_two=f2.user_id_one and f1.user_id_one=? AND f2.user_id_one=users.id;',[auth()->user()->id] );
         
         return view('profiles.user_profile',[
             'friends'=>$friends
@@ -18,10 +18,18 @@ class UserController extends Controller
        
  
     public function explore(){
-        $users=User::all();
+        $not_friends=DB::select('SELECT u2.id, u2.name from users u1, users u2 where not EXISTS(SELECT 1 From friends f where f.user_id_one=u1.id and f.user_id_two=u2.id ) and not EXISTS (SELECT 1 from friends f where f.user_id_one=u2.id and f.user_id_two=u1.id)  and u1.id != u2.id and u1.id=?',[auth()->user()->id]);
+
+        $friends=DB::select('SELECT users.name,f2.user_id_one  FROM friends f1, friends f2, users WHERE f1.user_id_one=f2.user_id_two and f1.user_id_two=f2.user_id_one and f1.user_id_one=? AND f2.user_id_one=users.id;',[auth()->user()->id] );
+         
+       
+        
         return view('profiles.explore',[
-            'profiles'=>$users
+            
+            'friends'=>$friends,
+            'others'=>$not_friends
         ]);
+
     }
     public function edit(){
         return view('profiles.user_update');
