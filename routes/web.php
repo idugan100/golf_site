@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\FriendController;
 use App\Http\Controllers\post_user;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
@@ -21,6 +22,7 @@ Route::post('/likes',[post_user::class,'store'])
     ->name('likes.create')
     ->middleware(['auth','verified'])
     ;
+//defualt views
 Route::get('/', function () {
     return view('welcome');
 });
@@ -28,7 +30,7 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return view('profiles.user_profile');
 })->middleware(['auth', 'verified'])->name('dashboard');
-
+//comment routes
 Route::resource('comments',CommentController::class)
     ->only(['destroy','store'])
     ->middleware(['auth','verified']);
@@ -49,9 +51,11 @@ Route::get('profile/{id}',[UserController::class,'show'])
     ->middleware(['auth', 'verified']);
 
 
-
+//post routes
 Route::resource('posts',PostController::class)
     ->only(['index','store','edit','update','destroy'])
     ->middleware(['auth','verified']);
-
+//freind routes
+Route::get('/friends/{id}',[FriendController::class,'byuser']
+);
 require __DIR__.'/auth.php';

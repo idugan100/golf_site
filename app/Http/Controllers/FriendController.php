@@ -2,8 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Friend;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+//query to return a users friends using user id
+//SELECT users.name as 'friend name',f2.user_id_one as 'friend id' 
+//FROM friends f1, friends f2, users 
+//WHERE f1.user_id_one=f2.user_id_two and f1.user_id_two=f2.user_id_one and f1.user_id_one=? AND f2.user_id_one=users.id; 
 
 class FriendController extends Controller
 {
@@ -53,7 +59,7 @@ class FriendController extends Controller
     {
         //
     }
-
+ 
     /**
      * Show the form for editing the specified resource.
      *

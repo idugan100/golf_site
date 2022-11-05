@@ -32,9 +32,7 @@ class User extends Authenticatable
         return $this->belongsToMany(Post::class,'post_users');
     }
 
-    public function friends(){
-        return $this->hasMany(Friend::class,'user_id_one');
-    }
+  
     use HasApiTokens, HasFactory, Notifiable;
 
     /**

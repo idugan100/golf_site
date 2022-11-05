@@ -3,13 +3,20 @@
 namespace App\Http\Controllers;
 use app\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
     public function index(){
+        $friends= $friends=DB::select('SELECT users.name,f2.user_id_one  FROM friends f1, friends f2, users WHERE f1.user_id_one=f2.user_id_two and f1.user_id_two=f2.user_id_one and f1.user_id_one=? AND f2.user_id_one=users.id;',[auth()->user()->id] );
         
-        return view('profiles.user_profile');
+        return view('profiles.user_profile',[
+            'friends'=>$friends
+        ]);
     }
+
+       
+ 
     public function explore(){
         $users=User::all();
         return view('profiles.explore',[
