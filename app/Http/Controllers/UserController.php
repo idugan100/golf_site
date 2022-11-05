@@ -53,9 +53,12 @@ class UserController extends Controller
 
     public function show(Request $request){
         $user=User::find($request->id);
+        $friends=DB::select('SELECT users.name,f2.user_id_one  FROM friends f1, friends f2, users WHERE f1.user_id_one=f2.user_id_two and f1.user_id_two=f2.user_id_one and f1.user_id_one=? AND f2.user_id_one=users.id;',[$request->id] );
+
             return view('profiles.show',[
                 
-                "user"=>$user
+                "user"=>$user,
+                'friends'=>$friends
             ]);
     
     }

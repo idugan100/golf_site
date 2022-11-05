@@ -12,8 +12,7 @@
      <h1 class="text-xl font-bold mt-10 underline">Friends</h1>
        
     @foreach ($friends as $item)
-        <p>{{ $item->name }}</p>
-        
+    <a href="/profile/{{ $item->user_id_one}}">{{ $item->name }}</a>
     @endforeach
   
     </div>
