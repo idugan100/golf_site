@@ -57,5 +57,7 @@ Route::resource('posts',PostController::class)
     ->middleware(['auth','verified']);
 //freind routes
 Route::get('/friends/{id}',[FriendController::class,'byuser']
-);
+)->middleware(['auth', 'verified']);
+Route::post('/friends',[FriendController::class,'store'])->middleware(['auth', 'verified']);
+Route::delete('/friends/reject',[FriendController::class,'reject'])->middleware(['auth', 'verified']);
 require __DIR__.'/auth.php';

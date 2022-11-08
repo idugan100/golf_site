@@ -41,9 +41,22 @@ class FriendController extends Controller
      */
     public function store(Request $request)
     {
-        $validated=$request->validate([
-            
-        ]);
+        
+        $validated=$request->validate(
+            [
+                'friend_id'=>'required',
+                'user_id'=>'nullable'
+            ]
+            );
+        $validated['user_id']=auth()->user()->id;
+        
+        $friend=new Friend();
+        $friend->user_id_one=$validated['user_id'];
+        $friend->user_id_two=(int)$validated['friend_id'];
+        
+        $friend->save();
+        return( redirect(route('profile.explore')));
+        
         
     }
 
@@ -90,5 +103,12 @@ class FriendController extends Controller
     public function destroy(Friend $friend)
     {
         //
+    }
+
+    public function reject(Request $request){
+        
+        Friend::where('user_id_two',auth()->user()->id)
+                ->where('user_id_one',$request->friend_id)->delete();
+        return(redirect(route('profile.explore')));
     }
 }

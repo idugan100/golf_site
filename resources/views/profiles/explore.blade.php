@@ -8,8 +8,18 @@
     {{ $profile->name }}  
     
     <button class="border p-1 ml-4"><a href= "/profile/{{$profile->id  }}">Visit</a></button>
-    <button class="border p-1 ml-4">Accept</button>
-    <button class="border p-1 ml-4">Reject</button>
+    <form class ="inline"action="/friends" method="POST">
+        @csrf
+        <input type="number" name="friend_id" class="hidden" value={{ $profile->id }}>
+        <button class="border p-1 ml-4">Accept</button>
+    </form>
+    <form class ="inline"action="/friends/reject" method="POST">
+        @csrf
+        @method('DELETE')
+        <input type="number" name="friend_id" class="hidden" value={{ $profile->id }}>
+        <button class="border p-1 ml-4">Reject</button>
+    </form>
+    
 </div>
 @endforeach
 @endif
@@ -45,7 +55,11 @@
     {{ $profile->name }}  
     
     <button class="border p-1 ml-4"><a href= "/profile/{{$profile->id  }}">Visit</a></button>
-    <button class="border p-1 ml-4">Send Friend Request</button>
+    <form class ="inline"action="/friends" method="POST">
+        @csrf
+        <input type="number" name="friend_id" class="hidden" value={{ $profile->id }}>
+        <button class="border p-1 ml-4">Send Friend Request</button>
+    </form>
 </div>
 @endforeach
 @endif
