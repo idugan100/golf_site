@@ -3,8 +3,10 @@
 namespace App\Listeners;
 
 use App\Events\Newuser;
-use Illuminate\Contracts\Queue\ShouldQueue;
+use App\Mail\Welcome;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Contracts\Queue\ShouldQueue;
 
 class WelcomeEmail
 {
@@ -27,5 +29,6 @@ class WelcomeEmail
     public function handle(Newuser $event)
     {
         dd($event->user);
+        Mail::to($event->user)->send(new Welcome($event->user));
     }
 }
