@@ -34,7 +34,7 @@ class Welcome extends Mailable
     {
         return new Envelope(
             subject: 'Welcome',
-            from: New Address('noreply@golfBudies.com','Gold buddies')
+            from: New Address('isaac@greenervolts.com','Isaac Dugan')
         );
     }
 

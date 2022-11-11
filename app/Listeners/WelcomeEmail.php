@@ -28,7 +28,7 @@ class WelcomeEmail
      */
     public function handle(Newuser $event)
     {
-        dd($event->user);
+        
         Mail::to($event->user)->send(new Welcome($event->user));
     }
 }
