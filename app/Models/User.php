@@ -31,6 +31,7 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Post::class,'post_users');
     }
+  
 
   
     use HasApiTokens, HasFactory, Notifiable;
